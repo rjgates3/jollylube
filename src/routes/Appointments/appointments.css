@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .main-text {
+    margin: 30px 50px 30px 50px;
+  }
+  
+  .times {
+    margin: 0 0 0 60px;
+  }

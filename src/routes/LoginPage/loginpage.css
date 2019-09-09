@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+  }
+  form {
+    padding: 2.5rem;
+    width: 30rem;
+    margin: 0 auto;
+    /* border: 1px solid black; */
+  }
+  legend {
+    display: inline-block;
+    /* text-align: center; */
+    font-size: 1.5rem;
+    margin: 0 0 1.2rem 3rem;
+  }
+  
+  label {
+    display: inline-block;
+    width: 6rem;
+    font-size: 1rem;
+  }
+  input {
+    display: inline-block;
+    width: 18.6rem;
+    padding: 3px;
+    font-size: 1rem;
+  }
+  input[type="submit"] {
+    -webkit-appearance: none;
+    float: right;
+    margin-top: .7rem;
+    font-size: 1rem;
+  }
+  div {
+    margin: .5rem 0;
+    padding: 0;
+  }

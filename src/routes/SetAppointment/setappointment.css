@@ -1,0 +1,22 @@
+.main-text {
+    margin: 30px 50px 30px 50px;
+  }
+  
+.calendar {
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px 0 0 0;
+  max-width: 70%;
+  border: 1px solid black;
+  font-size: 1.5rem;
+}
+
+.react-calendar {
+  margin: 0 auto;
+}
+
+.picktime {
+  text-align: center;
+  margin: 0 0 0 0;
+  border: 1px solid red;
+}

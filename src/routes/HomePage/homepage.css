@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .main-text {
+    margin: 30px 50px 30px 50px;
+  }
+  
+  .signup {
+    text-align: center;
+    margin: 100px 0 0 0;
+  }
+  
+  button {
+    font-size: 1.2rem;
+    padding: .6rem;
+  }
+  
+  .signin {
+    text-align: center;
+  }
