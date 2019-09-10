@@ -12,7 +12,7 @@ class LoginForm extends React.Component {
         error: null
     }
 
-    handleSubmitAuth = event => {
+    handleSubmit = event => {
         event.preventDefault();
         this.setState({ error: null })
         const { user_name, password } = event.target
@@ -47,12 +47,12 @@ class LoginForm extends React.Component {
                 </legend>
                 <div>
                     <label
-                        htmlFor="LoginForm__email"
+                        htmlFor="LoginForm__user_name"
                         >Email</label>
                     <input 
                         type="text" 
-                        id="LoginForm__email" 
-                        name="email" 
+                        id="LoginForm__user_name" 
+                        name="user_name" 
                         placeholder="Enter your email:"
                     ></input>
                 </div>

@@ -16,11 +16,20 @@ import PrivateOnlyRoute from '../../components/Utils/PrivateOnlyRoute';
 import PublicRoute from '../../components/Utils/PublicRoute';
 
 class App extends React.Component {
+
+    state = { hasError: false }
+
+    static getDerivedStateFromError(error) {
+        console.log(error)
+        return { hasError: true }
+    }
+
     render() {
         return (
             <div className='App'>
                 <Header />
                 <main className='App_main'>
+                    {this.state.hasError && <p> className='red'>There was an error!</p>}
                     <Switch>
                         <Route
                             exact

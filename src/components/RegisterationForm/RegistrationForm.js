@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input, Required } from '..//Utils/Utils';
+import { Button, Input, Required } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service'
 
 class Registration extends React.Component {
@@ -49,7 +49,7 @@ class Registration extends React.Component {
                     Create an Account
                 </legend>
                 <div role='alert'>
-                    { error && <p className='red'>{ error }</p> }
+                    {/* { error && <p className='red'>{ error }</p> } */}
                 </div>
                 <div className='full_name'>
                     <label

@@ -1,7 +1,7 @@
 import React from 'react';
 
 //import Components
-import Registration from '../../components/Registeration/Registration'
+import RegistrationForm from '../../components/RegisterationForm/RegistrationForm'
 
 //import css
 import './registration.css'
@@ -21,7 +21,7 @@ class RegistrationPage extends React.Component {
     render() {
         return (
             <div>    
-                <Registration />
+                <RegistrationForm />
             </div>
         )
     }

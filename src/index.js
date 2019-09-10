@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import App from './components/App/App';
+import history from './history';
 import ErrorBoundry from './components/ErrorBoundry/ErrorBoundry';
 
 
 ReactDOM.render(
-    <BrowserRouter>
+    <Router history={history}>
         <ErrorBoundry>
             <App/>
         </ErrorBoundry>
-    </BrowserRouter>,
+    </Router>,
     document.getElementById('root')
 );
