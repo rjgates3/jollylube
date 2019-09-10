@@ -1,68 +1,97 @@
 import React from 'react';
+import { Button, Input, Required } from '..//Utils/Utils';
+import AuthApiService from '../../services/auth-api-service'
 
 class Registration extends React.Component {
 
+
+    static defaultProps = {
+        onRegistrationSuccess: () => {}
+    }
+
+    state = { error: null }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        const { full_name, user_name, password } = event.target;
+
+        this.setState({
+            error: null
+        });
+
+        AuthApiService.postUser({
+            user_name: user_name.value,
+            password: password.value,
+            full_name: full_name.value
+        })
+        .then(user => {
+            user_name.value = ''
+            full_name.value = ''
+            password.value = ''
+            this.props.onRegistrationSuccess()
+        })
+        .catch(res => {
+            this.setState({
+                error: res.error
+            });
+        });
+    }
+
+
     render() {
+        const { error } = this.state
         return(
             <form 
-                id="contactForm" 
-                action="#"
-            >
+                className='RegistrationForm' 
+                onSubmit={ this.handleSubmit }>
                 <legend 
-                    id="create-account"
-                >Create an Account</legend>
-                <div>
+                    className='create-account'>
+                    Create an Account
+                </legend>
+                <div role='alert'>
+                    { error && <p className='red'>{ error }</p> }
+                </div>
+                <div className='full_name'>
                     <label
-                        htmlFor="name"
-                    >Name</label>
-                    <input
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        placeholder="Enter your full name:"
-                    ></input>
+                        htmlFor='RegistrationForm__full_name'>
+                        Full Name <Required />
+                    </label>
+                    <Input
+                        name='full_name'
+                        type='text'
+                        required
+                        id='RegistrationForm__full_name' 
+                        placeholder='Enter your full name:'>
+                    </Input>
                 </div>
-                <div>
+                <div className='user_name'>
                     <label
-                        htmlFor="email"
-                    >Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email:"
-                    ></input>
+                        htmlFor='RegistrationForm__user_name'>
+                        Email <Required />
+                    </label>
+                    <Input
+                        name='user_name'
+                        type='text'
+                        required
+                        id='RegistrationForm__user_name'
+                        placeholder='Enter your email:'>
+                    </Input>
                 </div>
-                <div>
+                <div className='password'>
                     <label
-                        htmlFor="password"
-                    >Password</label>
-                    <input
-                        type="text"
-                        id="password"
-                        name="password"
-                        placeholder="Password"
-                    ></input>
+                        htmlFor='RegistrationForm__password'>
+                        Password <Required />
+                    </label>
+                    <Input
+                        name='password'
+                        type='password'
+                        required
+                        id='RegistrationForm__password'>
+                    </Input>
                 </div>
-                <div>
-                    <label
-                        htmlFor="retype-password"
-                        ></label>
-                    <input
-                        type="text"
-                        id="retype-password"
-                        name="retype-password"
-                        placeholder="Retype Your Password"
-                    ></input>
-                </div>
-                <div>
-                    <input
-                        type="submit"
-                        name="submit"
-                        id="submit"
-                        value="Sign Up"
-                    ></input>
-                </div>
+                <Button type='submit'>
+                    Sign Up
+                </Button>
             </form>
         )
     }

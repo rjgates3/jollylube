@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-services';
 
 //import css
 import './header.css';
@@ -6,22 +8,65 @@ import './header.css';
 
 class Header extends React.Component {
 
+    handleLogoutClick = () => {
+        TokenService.clearAuthToken();
+    }
+
+    renderIfLoggedinLink() {
+        return(
+            <div className='header__logged-in'>
+                <div>
+                <Link to='/myappointments/123'>
+                    My Appointments
+                </Link>
+                </div>
+                <div>
+                <Link to='/setappointment'>
+                    Set Appointment
+                </Link>
+                </div>
+                <div>
+                <Link 
+                    onClick={this.handleLogoutClick}
+                    to='/'>
+                    Logout
+                </Link>
+                </div>
+            </div>
+        )
+    }
+
+    renderIfLoggedoutLink() {
+        return (
+            <div className='header__logged-in'>
+                <div>
+                <Link to='/login'>
+                    Login
+                </Link>
+                </div>
+                <div>
+                <Link to='/createaccount'>
+                    Create Account
+                </Link>
+                </div>
+            </div>
+        )
+    }
+    
     render() {
         return (
-            <div className='header'>
+            <nav className='header'>
                 <header>
-                    <h1><a href='/'>Jolly Lube</a></h1>
+                    <h1>
+                        <Link to='/'>
+                            Jolly Lube
+                        </Link>
+                    </h1>
                 </header>
-                <nav>
-                    <ul>
-                        <li><a href='/'>Home</a></li>
-                        <li><a href='/myappointments/123'>My Appointments</a></li>
-                        <li><a href='/setappointment'>Set Appointment</a></li>
-                        <li><a href='/login'>Login</a></li>
-                        <li><a href='/createaccount'>Create Account</a></li>
-                    </ul>
-                </nav>
-            </div>
+                {TokenService.hasAuthToken()
+                ? this.renderIfLoggedinLink()
+                : this.renderIfLoggedoutLink()}
+            </nav>
         )
     }
 }

@@ -12,6 +12,8 @@ import NotFound from '../../routes/NotFound/NotFound';
 //import other components
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import PrivateOnlyRoute from '../../components/Utils/PrivateOnlyRoute';
+import PublicRoute from '../../components/Utils/PublicRoute';
 
 class App extends React.Component {
     render() {
@@ -25,19 +27,19 @@ class App extends React.Component {
                             path='/'
                             component={ HomePage }
                         />
-                        <Route
+                        <PublicRoute
                             path='/login'
                             component={ LoginPage }
                         />
-                        <Route
+                        <PublicRoute
                             path='/createaccount'
                             component={ Registration }
                         />
-                        <Route
+                        <PrivateOnlyRoute
                             path='/myappointments/:userid'
                             component={ MyAppointments }
                         />
-                        <Route
+                        <PrivateOnlyRoute
                             path='/setappointment'
                             component={ SetAppointment }
                         />
