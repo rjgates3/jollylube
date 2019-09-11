@@ -15,18 +15,52 @@ import Footer from '../Footer/Footer';
 import PrivateOnlyRoute from '../../components/Utils/PrivateOnlyRoute';
 import PublicRoute from '../../components/Utils/PublicRoute';
 
+import UserContext from '../../UserContext';
+
 class App extends React.Component {
 
-    state = { hasError: false }
+    static contextType = UserContext;
 
-    static getDerivedStateFromError(error) {
-        console.log(error)
-        return { hasError: true }
+    state = {
+        loggedIn: false,
+        hasError: false,
+        loginError: null
     }
+
+    // static getDerivedStateFromError(error) {
+    //     console.log(error)
+    //     return { hasError: true }
+    // }
+
+    setLoginError = (error) => {
+        this.setState({
+            loginError: error
+        })
+    }
+
+    handleLogin = () => {
+        this.setState({
+            loggedIn: true
+        })
+    };
+
+    handleLogout = () => {
+        this.setState({
+            loggedIn: false
+        })
+    };
 
     render() {
         return (
             <div className='App'>
+                <UserContext.Provider
+                    value = { {
+                        loggedIn: this.state.loggedIn,
+                        logginError: this.state.loginError,
+                        handleLogin: this.handleLogin,
+                        handleLogout: this.handleLogout,
+                        setLoginError: this.setLoginError,
+                } } >
                 <Header />
                 <main className='App_main'>
                     {this.state.hasError && <p> className='red'>There was an error!</p>}
@@ -45,7 +79,7 @@ class App extends React.Component {
                             component={ Registration }
                         />
                         <PrivateOnlyRoute
-                            path='/myappointments/:userid'
+                            path='/myappointments'
                             component={ MyAppointments }
                         />
                         <PrivateOnlyRoute
@@ -59,6 +93,7 @@ class App extends React.Component {
                 </main>
 
                 <Footer />
+            </UserContext.Provider>
             </div>
         )
     }

@@ -13,7 +13,7 @@
         }
     ],
     "env": {
-      "REACT_APP_API_KEY": "3d059b4c-36d5-4410-a546-f4b4e0870c4f",
+      "REACT_APP_API_KEY": "Bearer 3d059b4c-36d5-4410-a546-f4b4e0870c4f",
       "DB_URL": "https://cryptic-brook-57150.herokuapp.com/"
     }
   }

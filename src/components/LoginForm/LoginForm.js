@@ -1,38 +1,43 @@
 import React from 'react';
 import TokenService from '../../services/token-services'
 import AuthApiService from '../../services/auth-api-service';
+import UserContext from '../../UserContext';
+
 
 class LoginForm extends React.Component {
 
-    static defaultProps = {
-        onLoginSuccess: () => {}
-    }
+    static contextType = UserContext;
 
-    state = {
-        error: null
-    }
+    // static defaultProps = {
+    //     onLoginSuccess: () => {}
+    // }
+
+    // state = {
+    //     error: null
+    // }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({ error: null })
+        this.context.setLoginError(null)
         const { user_name, password } = event.target
         AuthApiService.postLogin({
-          user_name: user_name.value,
-          password: password.value
+            user_name: user_name.value,
+            password: password.value
         })
-          .then( res => {
-            user_name.value = '';
-            password.value = '';
-            TokenService.saveAuthToken(res.authToken)
-            this.props.onLoginSuccess()
-          })
-          .catch(res => {
-            this.setState({ error: res.error })
-          })
-      }
+            .then( res => {
+                user_name.value = '';
+                password.value = '';
+                TokenService.saveAuthToken(res.authToken)
+                this.context.handleLogin();
+                this.props.history.push('/')
+            })
+            .catch(res => {
+                this.context.setLoginError(res.error)
+            })
+    }
 
     render() {
-        const { error } = this.state
+        const error = this.context.loginError
         return(
             <form 
                 className="LoginForm"

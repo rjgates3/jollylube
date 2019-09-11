@@ -1,22 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserContext from '../../UserContext';
 import TokenService from '../../services/token-services';
-
 //import css
 import './header.css';
 
 
 class Header extends React.Component {
 
-    handleLogoutClick = () => {
-        TokenService.clearAuthToken();
-    }
+    static contextType = UserContext;
 
-    renderIfLoggedinLink() {
+    handleLogout = () => {
+        TokenService.clearAuthToken();
+        this.context.handleLogout();
+    };
+
+
+    renderLoggedIn() {
         return(
             <div className='header__logged-in'>
                 <div>
-                <Link to='/myappointments/123'>
+                <Link to='/myappointments'>
                     My Appointments
                 </Link>
                 </div>
@@ -27,7 +31,7 @@ class Header extends React.Component {
                 </div>
                 <div>
                 <Link 
-                    onClick={this.handleLogoutClick}
+                    onClick={ this.handleLogout }
                     to='/'>
                     Logout
                 </Link>
@@ -36,7 +40,7 @@ class Header extends React.Component {
         )
     }
 
-    renderIfLoggedoutLink() {
+    renderLoggedOut() {
         return (
             <div className='header__logged-in'>
                 <div>
@@ -63,9 +67,9 @@ class Header extends React.Component {
                         </Link>
                     </h1>
                 </header>
-                {TokenService.hasAuthToken()
-                ? this.renderIfLoggedinLink()
-                : this.renderIfLoggedoutLink()}
+                {this.context.loggedIn
+                ? this.renderLoggedIn()
+                : this.renderLoggedOut()}
             </nav>
         )
     }
