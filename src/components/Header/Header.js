@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserContext from '../../UserContext';
+import Context from '../../contexts/Context';
 import TokenService from '../../services/token-services';
 //import css
 import './header.css';
@@ -8,7 +8,7 @@ import './header.css';
 
 class Header extends React.Component {
 
-    static contextType = UserContext;
+    static contextType = Context;
 
     handleLogout = () => {
         TokenService.clearAuthToken();

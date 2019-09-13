@@ -1,4 +1,3 @@
-import config from '../config';
 
 const key = 'token';
 const TokenService = {

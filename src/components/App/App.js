@@ -15,22 +15,22 @@ import Footer from '../Footer/Footer';
 import PrivateOnlyRoute from '../../components/Utils/PrivateOnlyRoute';
 import PublicRoute from '../../components/Utils/PublicRoute';
 
-import UserContext from '../../UserContext';
+import Context from '../../contexts/Context';
 
 class App extends React.Component {
 
-    static contextType = UserContext;
+    static contextType = Context;
 
     state = {
         loggedIn: false,
         hasError: false,
-        loginError: null
+        loginError: null,
     }
 
-    // static getDerivedStateFromError(error) {
-    //     console.log(error)
-    //     return { hasError: true }
-    // }
+    // Need a isLoggedIn function:
+    //look and see if user has an authToken
+    //validate that authToken
+    //set loggedIn to true/false
 
     setLoginError = (error) => {
         this.setState({
@@ -42,24 +42,24 @@ class App extends React.Component {
         this.setState({
             loggedIn: true
         })
-    };
+    }
 
     handleLogout = () => {
         this.setState({
             loggedIn: false
         })
-    };
+    }
 
     render() {
         return (
             <div className='App'>
-                <UserContext.Provider
+                <Context.Provider
                     value = { {
                         loggedIn: this.state.loggedIn,
                         logginError: this.state.loginError,
                         handleLogin: this.handleLogin,
                         handleLogout: this.handleLogout,
-                        setLoginError: this.setLoginError,
+                        setLoginError: this.setLoginError
                 } } >
                 <Header />
                 <main className='App_main'>
@@ -93,7 +93,7 @@ class App extends React.Component {
                 </main>
 
                 <Footer />
-            </UserContext.Provider>
+            </Context.Provider>
             </div>
         )
     }

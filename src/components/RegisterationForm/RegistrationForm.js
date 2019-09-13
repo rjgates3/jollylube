@@ -39,7 +39,6 @@ class Registration extends React.Component {
 
 
     render() {
-        const { error } = this.state
         return(
             <form 
                 className='RegistrationForm' 

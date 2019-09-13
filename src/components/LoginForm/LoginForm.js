@@ -1,12 +1,12 @@
 import React from 'react';
 import TokenService from '../../services/token-services'
 import AuthApiService from '../../services/auth-api-service';
-import UserContext from '../../UserContext';
+import Context from '../../contexts/Context';
 
 
 class LoginForm extends React.Component {
 
-    static contextType = UserContext;
+    static contextType = Context;
 
     // static defaultProps = {
     //     onLoginSuccess: () => {}
