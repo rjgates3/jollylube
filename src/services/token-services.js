@@ -2,7 +2,6 @@
 const key = 'token';
 const TokenService = {
     saveAuthToken(token) {
-        console.log(`saving the token: ${token}`);
         return window.localStorage.setItem(key, token);
 },
     getAuthToken() {
@@ -14,11 +13,11 @@ const TokenService = {
     hasAuthToken() {
         return !!TokenService.getAuthToken();
     },
-    makeBasicAuthToken(userName, password) {
-        const token = window.btoa(`${userName}:${password}`);
-        console.log(`making the token: ${token}`);
-        return token;
-    },
+    // makeBasicAuthToken(userName, password) {
+    //     const token = window.btoa(`${userName}:${password}`);
+    //     console.log(`making the token: ${token}`);
+    //     return token;
+    // },
 };
 
 export default TokenService;

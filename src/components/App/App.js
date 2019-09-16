@@ -22,33 +22,35 @@ class App extends React.Component {
     static contextType = Context;
 
     state = {
-        loggedIn: false,
+        // loggedIn: false,
         hasError: false,
         loginError: null,
     }
 
-    // Need a isLoggedIn function:
-    //look and see if user has an authToken
-    //validate that authToken
-    //set loggedIn to true/false
+    static getDrivedStateFromError(error) {
+        console.error(error)
+        return { hasError: true }
+    }
 
     setLoginError = (error) => {
         this.setState({
             loginError: error
         })
     }
+    
+
 
     handleLogin = () => {
-        this.setState({
-            loggedIn: true
-        })
+        // this.setState({
+        //     loggedIn: true
+        // })
     }
 
-    handleLogout = () => {
-        this.setState({
-            loggedIn: false
-        })
-    }
+    // handleLogout = () => {
+    //     // this.setState({
+    //     //     loggedIn: false
+    //     // })
+    // }
 
     render() {
         return (
@@ -63,7 +65,7 @@ class App extends React.Component {
                 } } >
                 <Header />
                 <main className='App_main'>
-                    {this.state.hasError && <p> className='red'>There was an error!</p>}
+                    {this.state.hasError && <p className='red'>There was an error!</p>}
                     <Switch>
                         <Route
                             exact

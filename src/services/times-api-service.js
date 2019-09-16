@@ -12,9 +12,38 @@ const TimesApiService = {
             },
         })
             .then(res => 
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
+                (res.ok)
+                    ? res.json()
+                    : res.json().then(e => Promise.reject(e))
+            )
+    },
+
+    updateAppt(id) {
+
+        return fetch(`${config.API_BASE_URL}/times/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            }
+        })
+            .then(res => 
+                (res.ok)
+                    ? res.json()
+                    : res.json().then(e => Promise.reject(e))
+            )
+    },
+
+    getUserAppts() {
+        return fetch(`${config.API_BASE_URL}/userappts`, {
+            method: 'GET',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res => 
+                (res.ok)
+                ? res.json()
+                : res.json().then(e => Promise.reject(e))
             )
     }
 }

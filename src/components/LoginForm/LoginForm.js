@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
                 password.value = '';
                 TokenService.saveAuthToken(res.authToken)
                 this.context.handleLogin();
-                this.props.history.push('/')
+                this.props.history.push('/myappointments')
             })
             .catch(res => {
                 this.context.setLoginError(res.error)

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Button, Input, Required } from '../Utils/Utils';
-import AuthApiService from '../../services/auth-api-service'
+import TokenService from '../../services/token-services';
+import AuthApiService from '../../services/auth-api-service';
 
+import Context from '../../contexts/Context';
 class Registration extends React.Component {
 
+    static contextType = Context;
 
-    static defaultProps = {
-        onRegistrationSuccess: () => {}
-    }
-
-    state = { error: null }
+    // state = { error: null }
 
     handleSubmit = event => {
         event.preventDefault();
@@ -24,17 +23,18 @@ class Registration extends React.Component {
             password: password.value,
             full_name: full_name.value
         })
-        .then(user => {
-            user_name.value = ''
-            full_name.value = ''
-            password.value = ''
-            this.props.onRegistrationSuccess()
-        })
-        .catch(res => {
-            this.setState({
-                error: res.error
-            });
-        });
+            .then(() => 
+            AuthApiService.postLogin({
+                user_name: user_name.value,
+                password: password.value
+            }))
+                .then(res => {
+                    user_name.value = '';
+                    full_name.value = '';
+                    password.value = '';
+                    TokenService.saveAuthToken(res.authToken);
+                    this.props.history.push('/myappointments');
+                })
     }
 
 

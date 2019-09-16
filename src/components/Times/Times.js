@@ -1,6 +1,8 @@
 import React from 'react';
 
+import TimesService from '../../services/times-api-service';
 import AptTimesContext from '../../contexts/ApptTimesContext';
+import history from '../../history';
 
 class Times extends React.Component {
 
@@ -10,13 +12,25 @@ class Times extends React.Component {
         selectedButton: this.context.selectedAppts[0].id
     }
 
+    setApptWithUser = () => {}
+
     handleRadioClicked = e => {
         this.setState({
-            selectedButton: e.target.value
+            selectedButton: Number(e.target.value)
         })
+        console.log(`radio clicked ${e.target.value}, ${this.state.selectedButton}`)
+        console.log(`${typeof e.target.value}`)
     }
 
-    
+    handleSubmit = e => {
+        e.preventDefault();
+        console.log(this.context.selectedAppts)
+        console.log(`Form Submitted selected Radio Button = ${this.state.selectedButton}, with type = ${typeof this.state.selectedButton}`)
+
+        TimesService.updateAppt(this.state.selectedButton)
+            .then(() => history.push('/myappointments'))
+        // direct to myappointments
+    }
 
     formatTime = (date) => {
         let hours = date.getHours();
@@ -35,19 +49,18 @@ class Times extends React.Component {
                     <p className="selecteddate">{  this.context.selectedDay.toString().slice(0, 15)  }</p>
                     <form 
                         className='form appt-form'
+                        onSubmit = { this.handleSubmit }
                     >
-                        {this.context.selectedAppts.map((appt, idx) =>
+                        {this.context.selectedAppts.map(appt =>
                             <div className='form-check appt' key={appt.id}>
                                 <label>
                                     <input
                                         type = "radio"
-                                        name = "react-tips"
                                         value = { appt.id }
-                                        checked = { appt.id === this.state.selectedButton }
+                                        checked = { this.state.selectedButton === appt.id }
                                         onChange = { this.handleRadioClicked }
-                                        className = "form-check-input"
                                     />
-                                        { this.formatTime(new Date(appt.apt_date)) }
+                                        { this.formatTime(new Date(appt.appt_date)) }
                                 </label>
                             </div>
                         )}

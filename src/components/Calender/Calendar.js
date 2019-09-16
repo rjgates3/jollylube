@@ -39,31 +39,33 @@ class CalendarComponent extends React.Component {
                 for(let i=0; i<resJson.length; i++){
                     appts.push(resJson[i])
                 }
+                console.log(appts)
                 return appts;
         })
     }
-
-    //filter appts by year and month
+//appt_date
+    //filter appts by year, month, and available = false
     filterAppts = (appts, year, month) => {
-
         return appts
             //filter by year
             .filter(appt => {
-                let apptYear = new Date(appt.apt_date).getFullYear();
+                let apptYear = new Date(appt.appt_date).getFullYear();
                 return apptYear === year;
             })
             //filter by month
             .filter(appt => {
-                let apptMonth = new Date(appt.apt_date).getMonth();
+                let apptMonth = new Date(appt.appt_date).getMonth();
                 return apptMonth === month; // or to add next month also
             })
+            //filter by available = false
+            .filter(appt => appt.available)
     }
 
     filterApptsByDay = (appts, day) => {
         return appts
             //filter by day
             .filter(appt => {
-                let apptDay = new Date(appt.apt_date).getDay();
+                let apptDay = new Date(appt.appt_date).getDay();
                 return apptDay === day;
             })
     }
@@ -80,7 +82,7 @@ class CalendarComponent extends React.Component {
     isDayInAppts = (date) => {
         return this.state.appts.reduce((acc, appt) => {
             // const date = new Date(date)
-            const apptTimeStamp = this.getTimeStamp(new Date(appt.apt_date))
+            const apptTimeStamp = this.getTimeStamp(new Date(appt.appt_date))
             const dateTimeStamp = this.getTimeStamp(new Date(date))
             //compare month and date
             return (apptTimeStamp.getTime() === dateTimeStamp.getTime())
@@ -94,7 +96,7 @@ class CalendarComponent extends React.Component {
         //Get all appts
         this.getAppts()
             .then(appts => {
-
+                console.log(appts);
                 //filter appts by todays year, month
                 const today = new Date();
                 const year = today.getFullYear();
@@ -168,7 +170,7 @@ class CalendarComponent extends React.Component {
                             activeStartDate = { this.state.activeStartDate }
                             calendarType = "US"
                             tileDisabled = { ({ date }) => this.disabledDates(date) }
-                            onClickMonth = { (date) => this.context.setDaysWithAppt(date) }
+                            // onClickMonth = { (date) => this.context.setDaysWithAppt(date) }
                             onClickDay = { (date) => this.handleDateClicked(date) }
                             onActiveDateChange = { (value) => this.onChangeView(value) }
                             maxDetail = "month"
