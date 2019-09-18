@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from '../components/App/App';
-import { isTSAnyKeyword } from '@babel/types';
+import Footer from '../components/Footer/Footer';
 
 //the test case
 it('renders without crashing', () => {
@@ -10,7 +9,7 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
 
     //render the component in the DOM element
-    ReactDOM.render(<App />, div);
+    ReactDOM.render(<Footer />, div);
 
     //clean up
     ReactDOM.unmountComponentAtNode(div);

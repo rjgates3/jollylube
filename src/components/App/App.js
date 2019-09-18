@@ -85,7 +85,7 @@ class App extends React.Component {
                 <Header />
                 <SideDrawer />
                 { backdrop }
-                <main style={ { marginTop: '64px' } }>
+                <main style={ { marginTop: '56px' } }>
                     {this.state.hasError && <p className='red'>There was an error!</p>}
                     <Switch>
                         <Route

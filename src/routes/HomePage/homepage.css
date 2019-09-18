@@ -1,22 +1,56 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  
-  .main-text {
-    margin: 30px 50px 30px 50px;
-  }
-  
-  .signup {
-    text-align: center;
-    margin: 100px 0 0 0;
-  }
-  
-  button {
-    font-size: 1.2rem;
-    padding: .6rem;
-  }
-  
-  .signin {
-    text-align: center;
-  }
+
+.image1, .image2, .image3 {
+  margin: 0;
+  position: relative;
+  opacity: 0.8;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /*
+  background-attachment
+    fixed = parallax
+    scroll = normal
+  */
+  background-attachment: fixed;
+}
+
+.image1 {
+  background-image: url('../../images/alex-suprun-AHnhdjyTNGM-unsplash.jpg');
+  min-height: 700px;
+}
+
+.image2 {
+  background-image: url('../../images/logan-meis-7qLT-Msda1k-unsplash.jpg');
+  min-height: 500px;
+}
+
+.image3 {
+  background-image: url('../../images/aj-yorio-oAPv2AoMmCU-unsplash.jpg');
+  min-height: 500px;
+}
+
+.section {
+  text-align: center;
+  padding: 50px 50px;
+  background: #373A47;
+  color: #EFF5EA;
+  opacity: 1.9;
+}
+
+.caption {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-size: 23px;
+  letter-spacing: 8px;
+}
+
+.caption .border {
+  background-color: rgba(1, 1, 1, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}

@@ -16,7 +16,7 @@ export default class ErrorBoundry extends React.Component {
     }
 
     render() {
-        if(this.state.hsError) {
+        if(this.state.hasError) {
             return <h2>Something went wrong.</h2>
         }
 
