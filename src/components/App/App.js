@@ -53,7 +53,6 @@ class App extends React.Component {
                 sideDrawerOpen: true,
                 drawerClasses: 'side-drawer open'
         })
-        console.log(this.state.sideDrawerOpen, this.state.drawerClasses)
     };
 
     handleBackDropClick = () => {
