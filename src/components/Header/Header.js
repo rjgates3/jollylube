@@ -1,76 +1,108 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Context from '../../contexts/Context';
 import TokenService from '../../services/token-services';
+
+// import nav bar commponents
+import DrawerToggleButton from '../DrawerToggleButton/DrawerToggleButton'
+
 //import css
 import './header.css';
+
+import Context from '../../contexts/Context'
 
 
 class Header extends React.Component {
 
-    // static contextType = Context;
+    static contextType = Context;
 
     handleLogout = () => {
         TokenService.clearAuthToken();
-        // this.context.handleLogout();
+        this.context.setLoggedIn();
     };
-
 
     renderLogoutLink() {
         return(
-            <div className='header__logged-in'>
-                <div>
-                <Link to='/myappointments'>
-                    My Appointments
-                </Link>
-                </div>
-                <div>
-                <Link to='/setappointment'>
-                    Set Appointment
-                </Link>
-                </div>
-                <div>
-                <Link 
-                    onClick={ this.handleLogout }
-                    to='/'>
-                    Logout
-                </Link>
-                </div>
-            </div>
+            <ul>
+                <li>
+                    <Link 
+                        to='/myappointments' 
+                        className='menu'>
+                        My Appointments
+                    </Link>
+                </li>
+            
+                <li>
+                    <Link 
+                        to='/setappointment' 
+                        className='menu'>
+                        Set Appointment
+                    </Link>
+                </li>
+
+                <li>
+                    <Link 
+                        onClick={ this.handleLogout }
+                        to='/'
+                        className='menu'>
+                        Logout
+                    </Link>
+                </li>
+            </ul>
         )
     }
 
     renderLoginLink() {
         return (
-            <div className='header__logged-in'>
-                <div>
-                <Link to='/login'>
-                    Login
-                </Link>
-                </div>
-                <div>
-                <Link to='/createaccount'>
-                    Create Account
-                </Link>
-                </div>
-            </div>
+            <ul>
+                <li>
+                    <Link
+                        to='/login'
+                        className='menu'>
+                        Login
+                    </Link>
+                </li>
+            
+                <li>
+                    <Link 
+                        to='/createaccount'
+                        className='menu'>
+                        Create Account
+                    </Link>
+                </li>
+
+            </ul>
         )
     }
     
     render() {
         return (
-            <nav className='header'>
-                <header>
-                    <h1>
-                        <Link to='/'>
-                            Jolly Lube
+            <header className='toolbar'>
+
+                <nav className='toolbar__navigation'>
+
+                    <div className='toolbar__toggle-button'>
+                        <DrawerToggleButton />
+                    </div>
+
+                    <div className='toolbar__logo'>
+                        <Link
+                            to='/'
+                            className='logo'>
+                            <i className="fas fa-oil-can">  Jolly Lube</i>
                         </Link>
-                    </h1>
-                </header>
-                {TokenService.hasAuthToken()
-                ? this.renderLogoutLink()
-                : this.renderLoginLink()}
-            </nav>
+                    </div>
+
+                    <div className='spacer'></div>
+
+                    <div className='toolbar__navigation__items'>
+                        {TokenService.hasAuthToken()
+                        ? this.renderLogoutLink()
+                        : this.renderLoginLink()}
+                    </div>
+
+                </nav>
+
+            </header>
         )
     }
 }

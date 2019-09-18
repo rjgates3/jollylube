@@ -1,7 +1,8 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import TimesApiService from '../../services/times-api-service';
 
+import './appointments.css'
 class AppointmentPage extends React.Component {
 
     state = {
@@ -16,7 +17,6 @@ class AppointmentPage extends React.Component {
                     userAppts: appts
                 })
             })
-                .then(appts => console.log(appts))
     }
 
     //get user's appts
@@ -31,8 +31,7 @@ class AppointmentPage extends React.Component {
             })
     }
 
-    formateTime = (date) => {
-        console.log(date);
+    formatTime = (date) => {
         let hours = date.getHours();
         let minutes = date.getMinutes();
         let ampm = hours >= 12 ? 'PM' : 'AM';
@@ -43,7 +42,7 @@ class AppointmentPage extends React.Component {
     }
 
     formateAppt = (appt) => {
-        const time = this.formateTime(new Date(appt.appt_date));
+        const time = this.formatTime(new Date(appt.appt_date));
         const dayOfWeek = appt.appt_date.toString().slice(0, 3);
         const monthDayAndYear = appt.appt_date.toString().slice(4, 15)
         return  <div>
@@ -56,19 +55,47 @@ class AppointmentPage extends React.Component {
 
 
     render() {
-        return (
-            <div>
-                <h2>Faucibus Purus in Massa</h2>
-                <p className="main-text">Nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse</p>
-                <h2>List Appointments</h2>
-                { this.state.userAppts.map(appt => 
 
-                    <section className='appt' key={appt.id}>
-                        { this.formateAppt(appt)  }
-                    </section> )
-                }
-            </div>
-        )
+        if(this.state.userAppts.length === 0) {
+            return (
+                <section>
+                <h2>My Appointments</h2>
+                <div className='allappts'> 
+
+                    <div className='appt'>
+                        <p>You have</p>
+                        <p>no appointments.</p>
+                        <Link 
+                            to='/setappointment'>
+                            Set Appointment
+                        </Link>
+                    </div>
+
+                </div>
+            </section>
+            )
+        }
+        else {
+            return (
+                <section>
+                    <h2>My Appointments</h2>
+                    <div className='allappts'>
+                        { this.state.userAppts
+                            .sort((a, b) => 
+                                new Date(a.appt_date) - new Date(b.appt_date)
+                            )
+                        
+                            .map(appt => 
+
+                                <div className='appt' key={appt.id}>
+                                    { this.formateAppt(appt)  }
+                                </div>
+                            )
+                        }
+                    </div>
+                </section>
+            )
+        }
     }
 }
 

@@ -14,22 +14,10 @@ class Times extends React.Component {
 
     setApptWithUser = () => {}
 
-    handleRadioClicked = e => {
-        this.setState({
-            selectedButton: Number(e.target.value)
-        })
-        console.log(`radio clicked ${e.target.value}, ${this.state.selectedButton}`)
-        console.log(`${typeof e.target.value}`)
-    }
-
-    handleSubmit = e => {
+    handleSelect = e => {
         e.preventDefault();
-        console.log(this.context.selectedAppts)
-        console.log(`Form Submitted selected Radio Button = ${this.state.selectedButton}, with type = ${typeof this.state.selectedButton}`)
-
-        TimesService.updateAppt(this.state.selectedButton)
+        TimesService.updateAppt(e.target.value)
             .then(() => history.push('/myappointments'))
-        // direct to myappointments
     }
 
     formatTime = (date) => {
@@ -41,36 +29,43 @@ class Times extends React.Component {
         minutes = minutes < 10 ? '0' + minutes : minutes;
         const time = hours + ':' + minutes + ' ' + ampm;
         return time;
-    } 
+    }
+
+    formateAppt = (appt) => {
+        const time = this.formatTime(new Date(appt.appt_date));
+        const dayOfWeek = appt.appt_date.toString().slice(0, 3);
+        const monthDayAndYear = appt.appt_date.toString().slice(4, 15)
+        return  <div>
+                    <p>{ dayOfWeek }</p>
+                    <p>{ monthDayAndYear }</p>
+                    <p>at</p>
+                    <p>{ time }</p>
+                </div>
+    }
 
     render() {
             return(
-                <section className="picktime">
-                    <p className="selecteddate">{  this.context.selectedDay.toString().slice(0, 15)  }</p>
-                    <form 
-                        className='form appt-form'
-                        onSubmit = { this.handleSubmit }
-                    >
-                        {this.context.selectedAppts.map(appt =>
-                            <div className='form-check appt' key={appt.id}>
-                                <label>
-                                    <input
-                                        type = "radio"
-                                        value = { appt.id }
-                                        checked = { this.state.selectedButton === appt.id }
-                                        onChange = { this.handleRadioClicked }
-                                    />
-                                        { this.formatTime(new Date(appt.appt_date)) }
-                                </label>
-                            </div>
-                        )}
-                        <div className='form-group'>
-                            <button className='radio-submitt'>
-                                Save
-                            </button>
-                        </div>
-                    </form>
-                </section>
+                <div>
+                    
+                    <h2 className='setApptH2'>Select from Avaliable Times on {  this.context.selectedDay.toString().slice(0, 15)  }</h2>
+
+                    <section className='allappts'>
+
+                        { this.context.selectedAppts.map(appt =>
+                        
+                            <div className='appt' key={ appt.id }>
+                                { this.formateAppt(appt)  }
+                                <button 
+                                    type='Submit' 
+                                    onClick={ this.handleSelect }
+                                    value={ appt.id }>
+                                    Create Appointment
+                                </button>
+                            </div>)
+                        }
+                    </section>
+
+                </div>
             )
     }
 }

@@ -39,11 +39,10 @@ class CalendarComponent extends React.Component {
                 for(let i=0; i<resJson.length; i++){
                     appts.push(resJson[i])
                 }
-                console.log(appts)
                 return appts;
         })
     }
-//appt_date
+
     //filter appts by year, month, and available = false
     filterAppts = (appts, year, month) => {
         return appts
@@ -61,6 +60,7 @@ class CalendarComponent extends React.Component {
             .filter(appt => appt.available)
     }
 
+    // filters appts array by a given day
     filterApptsByDay = (appts, day) => {
         return appts
             //filter by day
@@ -79,6 +79,7 @@ class CalendarComponent extends React.Component {
         return new Date(year, month, day, 0, 0, 0);
     }
 
+    // creates and array of bools true if appt has the same selected day
     isDayInAppts = (date) => {
         return this.state.appts.reduce((acc, appt) => {
             // const date = new Date(date)
@@ -96,7 +97,6 @@ class CalendarComponent extends React.Component {
         //Get all appts
         this.getAppts()
             .then(appts => {
-                console.log(appts);
                 //filter appts by todays year, month
                 const today = new Date();
                 const year = today.getFullYear();
@@ -111,15 +111,9 @@ class CalendarComponent extends React.Component {
                 )
     }
 
+    // updates the avaliable dates when user changes month on the calendar
     onChangeView = (value) => {
         
-        // console.log(`active view changed ${value.activeStartDate}, ${value.view}`)
-        /*
-        value.activeStartDate ==> the first day of month now viewing after change
-        value.view ==> month, year, decade
-         */
-        // when the view is changed, updates appts with new month
-
         this.switchLoading();
 
         this.getAppts()
@@ -145,7 +139,7 @@ class CalendarComponent extends React.Component {
         //create a new timestamp with todays day, month, and year, with time=00:00:00.000
         const todayTimeStamp = this.getTimeStamp(new Date())
 
-        // return disabled for any date < today
+        // return disabled is true for any date < today
         if(date < todayTimeStamp) {
             return true
         }
@@ -165,19 +159,23 @@ class CalendarComponent extends React.Component {
         }
         else {
             return(
-                <section className="calendar">
-                        <Calendar
-                            activeStartDate = { this.state.activeStartDate }
-                            calendarType = "US"
-                            tileDisabled = { ({ date }) => this.disabledDates(date) }
-                            // onClickMonth = { (date) => this.context.setDaysWithAppt(date) }
-                            onClickDay = { (date) => this.handleDateClicked(date) }
-                            onActiveDateChange = { (value) => this.onChangeView(value) }
-                            maxDetail = "month"
-                            minDetail = "month"
-                        />
-                    <div className="select">Select a Day</div>
-                </section>
+                <div>
+
+                    <h2 className='setApptH2'>Select and Appointment Day and Time Below.</h2>
+
+                    <section className="calendar">
+                            <Calendar
+                                activeStartDate = { this.state.activeStartDate }
+                                calendarType = "US"
+                                tileDisabled = { ({ date }) => this.disabledDates(date) }
+                                onClickDay = { (date) => this.handleDateClicked(date) }
+                                onActiveDateChange = { (value) => this.onChangeView(value) }
+                                maxDetail = "month"
+                                minDetail = "month"
+                            />
+                    </section>
+
+                </div>
             )
         }
     }

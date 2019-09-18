@@ -36,6 +36,7 @@ class SetAppointmentPage extends React.Component {
 
             return (
                 <div className="set-appointment">
+
                     <ApptTimesContext.Provider
                         value= { {
                             selectedDay: this.state.selectedDay,
@@ -45,8 +46,6 @@ class SetAppointmentPage extends React.Component {
                             setSelectedAppts: this.setSelectedAppts,
                         } }
                     >
-                    <h2>Faucibus Purus in Massa</h2>
-                    <p className="main-text">Nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse</p>
                     
                     <CalendarComponent />
 
@@ -59,6 +58,7 @@ class SetAppointmentPage extends React.Component {
             
             return (
                 <div className="set-appointment">
+
                     <ApptTimesContext.Provider
                         value= { {
                             selectedDay: this.state.selectedDay,
@@ -68,8 +68,6 @@ class SetAppointmentPage extends React.Component {
                             setSelectedAppts: this.setSelectedAppts,
                         } }
                     >
-                    <h2>Faucibus Purus in Massa</h2>
-                    <p className="main-text">Nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse</p>
                     
                     <CalendarComponent />
 

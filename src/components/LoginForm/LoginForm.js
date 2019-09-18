@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input, Required } from '../Utils/Utils';
 import TokenService from '../../services/token-services'
 import AuthApiService from '../../services/auth-api-service';
 import Context from '../../contexts/Context';
@@ -7,14 +8,6 @@ import Context from '../../contexts/Context';
 class LoginForm extends React.Component {
 
     static contextType = Context;
-
-    // static defaultProps = {
-    //     onLoginSuccess: () => {}
-    // }
-
-    // state = {
-    //     error: null
-    // }
 
     handleSubmit = event => {
         event.preventDefault();
@@ -28,7 +21,6 @@ class LoginForm extends React.Component {
                 user_name.value = '';
                 password.value = '';
                 TokenService.saveAuthToken(res.authToken)
-                this.context.handleLogin();
                 this.props.history.push('/myappointments')
             })
             .catch(res => {
@@ -41,44 +33,47 @@ class LoginForm extends React.Component {
         return(
             <form 
                 className="LoginForm"
-                onSubmit = { this.handleSubmit }
-            >
-                <div role='alert'>
-                    {error && <p className='red'>{ error }</p>}
-                </div>
+                onSubmit = { this.handleSubmit }>
                 <legend
-                    id="sign-in"
-                    >Sign In
+                    id="sign-in">
+                    Sign In
                 </legend>
-                <div>
+                <div role='alert'>
+                    { error && <p className='red'>{ error }</p> }
+                </div>
+                <div className='user_name'>
                     <label
-                        htmlFor="LoginForm__user_name"
-                        >Email</label>
-                    <input 
-                        type="text" 
-                        id="LoginForm__user_name" 
-                        name="user_name" 
+                        htmlFor="LoginForm__user_name">
+                        Email <Required />
+                    </label>
+                    <Input
+                        name='user_name'
+                        type="text"
+                        required
+                        id="LoginForm__user_name"
                         placeholder="Enter your email:"
-                    ></input>
+                    ></Input>
+                </div>
+                <div className='password'>
+                    <label 
+                        htmlFor="LoginForm__password">
+                        Password <Required />
+                    </label>
+                    <Input
+                        name="password"
+                        type="text"
+                        required 
+                        id="LoginForm__password" 
+                        placeholder="Password"
+                    ></Input>
                 </div>
                 <div>
-                    <label 
-                        htmlFor="LoginForm__password"
-                    >Password</label>
                     <input 
-                        type="text" 
-                        id="LoginForm__password" 
-                        name="password"
-                        placeholder="Password"
+                        type="submit"
+                        name="submit"
+                        id="submit"
+                        value="Sign In"
                     ></input>
-                </div>
-                    <div>
-                        <input 
-                            type="submit"
-                            name="submit"
-                            id="submit"
-                            value="Sign In"
-                        ></input>
                 </div>
             </form>
         )

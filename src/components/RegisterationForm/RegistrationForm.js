@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input, Required } from '../Utils/Utils';
+import { Input, Required } from '../Utils/Utils';
 import TokenService from '../../services/token-services';
 import AuthApiService from '../../services/auth-api-service';
 
@@ -8,15 +8,10 @@ class Registration extends React.Component {
 
     static contextType = Context;
 
-    // state = { error: null }
-
     handleSubmit = event => {
         event.preventDefault();
+        this.context.setLoginError(null);
         const { full_name, user_name, password } = event.target;
-
-        this.setState({
-            error: null
-        });
 
         AuthApiService.postUser({
             user_name: user_name.value,
@@ -35,10 +30,14 @@ class Registration extends React.Component {
                     TokenService.saveAuthToken(res.authToken);
                     this.props.history.push('/myappointments');
                 })
+                .catch(res => {
+                    this.context.setLoginError(res.error)
+                })
     }
 
 
     render() {
+        const error = this.context.loginError
         return(
             <form 
                 className='RegistrationForm' 
@@ -48,7 +47,7 @@ class Registration extends React.Component {
                     Create an Account
                 </legend>
                 <div role='alert'>
-                    {/* { error && <p className='red'>{ error }</p> } */}
+                    { error && <p className='red'>{ error }</p> }
                 </div>
                 <div className='full_name'>
                     <label
@@ -85,12 +84,18 @@ class Registration extends React.Component {
                         name='password'
                         type='password'
                         required
-                        id='RegistrationForm__password'>
+                        id='RegistrationForm__password'
+                        placeholder='Password'>
                     </Input>
                 </div>
-                <Button type='submit'>
-                    Sign Up
-                </Button>
+                <div>
+                    <input 
+                        type="submit"
+                        name="submit"
+                        id="submit"
+                        value="Sign In"
+                    ></input>
+                </div>
             </form>
         )
     }
