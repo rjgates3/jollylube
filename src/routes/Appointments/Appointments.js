@@ -8,7 +8,7 @@ class AppointmentPage extends React.Component {
     state = {
         userAppts: []
     }
-
+    // get apptments when component mounts
     componentDidMount() {
 
         this.getUserAppts()
@@ -31,6 +31,7 @@ class AppointmentPage extends React.Component {
             })
     }
 
+    //format time to be HH:MM AM/PM
     formatTime = (date) => {
         let hours = date.getHours();
         let minutes = date.getMinutes();
@@ -41,15 +42,16 @@ class AppointmentPage extends React.Component {
         return time; 
     }
 
+    //returns a div elemnent for a single appt object
     formateAppt = (appt) => {
-        const time = this.formatTime(new Date(appt.appt_date));
         const dayOfWeek = appt.appt_date.toString().slice(0, 3);
         const monthDayAndYear = appt.appt_date.toString().slice(4, 15)
+        const time = this.formatTime(new Date(appt.appt_date));
         return  <div>
-                    <p>{ dayOfWeek }</p>
-                    <p>{ monthDayAndYear }</p>
-                    <p>at</p>
-                    <p>{ time }</p>
+                    <p className='appt-text'>{ dayOfWeek }</p>
+                    <p className='appt-text'>{ monthDayAndYear }</p>
+                    <p className='appt-text'>at</p>
+                    <p className='appt-text'>{ time }</p>
                 </div>
     }
 
@@ -58,13 +60,13 @@ class AppointmentPage extends React.Component {
 
         if(this.state.userAppts.length === 0) {
             return (
-                <section>
-                <h2>My Appointments</h2>
+                <section className='my-appointments'>
+                <h2 className='setApptH2'>My Appointments</h2>
                 <div className='allappts'> 
 
                     <div className='appt'>
-                        <p>You have</p>
-                        <p>no appointments.</p>
+                        <p className='appt-text'>You have</p>
+                        <p className='appt-text'>no appointments.</p>
                         <Link 
                             to='/setappointment'>
                             Set Appointment
@@ -77,8 +79,8 @@ class AppointmentPage extends React.Component {
         }
         else {
             return (
-                <section>
-                    <h2>My Appointments</h2>
+                <section className='my-appointments'>
+                    <h2 className='setApptH2'>My Appointments</h2>
                     <div className='allappts'>
                         { this.state.userAppts
                             .sort((a, b) => 

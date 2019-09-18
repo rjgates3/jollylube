@@ -1,6 +1,29 @@
-h2 {
-  font-size: 24px;
-  margin: 30px;
+
+.setApptH2 {
+  font-size: 23px;
+  text-align: center;
+  margin: 30px 15px;
+  padding: 50px 0;
+  display: inline-block;
+  width: 60%;
+  background-color: rgba(1, 1, 1, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  letter-spacing: 3px;
+}
+
+.my-appointments {
+  background-image: url('../../images/donnie-rosie-taO2fC7sxDU-unsplash.jpg');
+  min-height: 1100px;
+  margin: 0;
+  position: relative;
+  opacity: 0.8;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  text-align: center;
 }
 
 .allappts {
@@ -13,14 +36,30 @@ h2 {
 .appt{
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0px 11px 21px -8px rgba(0, 0, 0, 0.5);
   margin: 20px;
   padding: 20px;
-  background-color: white;
-  border: 1px solid black;
+  background-color: rgba(1, 1, 1, 0.6);
+  color: white;
 }
 
-p {
+.appt-text {
   font-size: 24px;
   padding: 10px 0 10px 0;
   }
+
+.setApptButton {
+  border: none;
+  /* color: #F21323; //header red */
+  color: red;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  background-color: rgba(1, 1, 1, 1);
+  padding: 15px;
+}
+
+@media (min-width: 450px) {
+  
+  .setApptH2 {
+    font-size: 19px;
+  }
+}

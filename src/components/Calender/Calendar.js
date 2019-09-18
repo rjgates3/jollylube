@@ -3,7 +3,6 @@ import Calendar from 'react-calendar';
 
 import ApptTimesContext from '../../contexts/ApptTimesContext';
 import TimesApiService from '../../services/times-api-service'
-
 class CalendarComponent extends React.Component {
 
     static contextType = ApptTimesContext;
@@ -159,20 +158,25 @@ class CalendarComponent extends React.Component {
         }
         else {
             return(
-                <div>
+                <div className='calendar-container'>
 
-                    <h2 className='setApptH2'>Select and Appointment Day and Time Below.</h2>
+                    <h2 className='setApptH2'>Select an Avaliable Day.</h2>
 
                     <section className="calendar">
-                            <Calendar
-                                activeStartDate = { this.state.activeStartDate }
-                                calendarType = "US"
-                                tileDisabled = { ({ date }) => this.disabledDates(date) }
-                                onClickDay = { (date) => this.handleDateClicked(date) }
-                                onActiveDateChange = { (value) => this.onChangeView(value) }
-                                maxDetail = "month"
-                                minDetail = "month"
-                            />
+                        
+                        <div className='calendarImage'>
+
+                        </div>
+
+                        <Calendar
+                            activeStartDate = { this.state.activeStartDate }
+                            calendarType = "US"
+                            tileDisabled = { ({ date }) => this.disabledDates(date) }
+                            onClickDay = { (date) => this.handleDateClicked(date) }
+                            onActiveDateChange = { (value) => this.onChangeView(value) }
+                            maxDetail = "month"
+                            minDetail = "month"
+                        />
                     </section>
 
                 </div>

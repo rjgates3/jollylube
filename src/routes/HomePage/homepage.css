@@ -1,3 +1,6 @@
+.homepage-header {
+  padding: 20px;
+}
 
 .image1, .image2, .image3 {
   margin: 0;
@@ -31,7 +34,7 @@
 
 .section {
   text-align: center;
-  padding: 50px 50px;
+  padding: 0px 70px 30px 70px;
   background: #373A47;
   color: #EFF5EA;
   opacity: 1.9;
@@ -40,17 +43,29 @@
 .caption {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 40%;
   width: 100%;
   text-align: center;
   color: black;
-  font-size: 23px;
-  letter-spacing: 8px;
 }
 
 .caption .border {
+  display: inline-block;
+  width: 60%;
   background-color: rgba(1, 1, 1, 0.6);
   color: white;
   padding: 20px;
   border-radius: 10px;
+  font-size: 23px;
+  letter-spacing: 4px;
+}
+
+.home-para {
+  font-size: 18px;
+}
+
+@media (min-width: 450px) {
+  p .explain-para {
+    font-size: 19px;
+  }
 }

@@ -36,10 +36,10 @@ class Times extends React.Component {
         const dayOfWeek = appt.appt_date.toString().slice(0, 3);
         const monthDayAndYear = appt.appt_date.toString().slice(4, 15)
         return  <div>
-                    <p>{ dayOfWeek }</p>
-                    <p>{ monthDayAndYear }</p>
-                    <p>at</p>
-                    <p>{ time }</p>
+                    <p className='appt-text'>{ dayOfWeek }</p>
+                    <p className='appt-text'>{ monthDayAndYear }</p>
+                    <p className='appt-text'>at</p>
+                    <p className='appt-text'>{ time }</p>
                 </div>
     }
 
@@ -47,7 +47,7 @@ class Times extends React.Component {
             return(
                 <div>
                     
-                    <h2 className='setApptH2'>Select from Avaliable Times on {  this.context.selectedDay.toString().slice(0, 15)  }</h2>
+                    <h2 className='setApptH2'>Select an Avaliable Appointment Time. </h2>
 
                     <section className='allappts'>
 
@@ -56,7 +56,8 @@ class Times extends React.Component {
                             <div className='appt' key={ appt.id }>
                                 { this.formateAppt(appt)  }
                                 <button 
-                                    type='Submit' 
+                                    type='Submit'
+                                    className='setApptButton'
                                     onClick={ this.handleSelect }
                                     value={ appt.id }>
                                     Create Appointment

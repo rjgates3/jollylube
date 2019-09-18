@@ -35,7 +35,7 @@ class SetAppointmentPage extends React.Component {
         if(this.state.selectedAppts.length === 0) {
 
             return (
-                <div className="set-appointment">
+                <section className="set-appointment">
 
                     <ApptTimesContext.Provider
                         value= { {
@@ -50,14 +50,14 @@ class SetAppointmentPage extends React.Component {
                     <CalendarComponent />
 
                     </ApptTimesContext.Provider>
-                </div>
+                </section>
             )
         }
 
         else {
             
             return (
-                <div className="set-appointment">
+                <section className="set-appointment">
 
                     <ApptTimesContext.Provider
                         value= { {
@@ -74,7 +74,7 @@ class SetAppointmentPage extends React.Component {
                     <Times />
 
                     </ApptTimesContext.Provider>
-                </div>
+                </section>
             )
         }
 
