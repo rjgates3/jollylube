@@ -31,6 +31,17 @@ class AppointmentPage extends React.Component {
             })
     }
 
+    handleCancelClicked = e => {
+        e.preventDefault();
+        TimesApiService.cancelAppt(e.target.value)
+            .then(() => this.getUserAppts())
+            .then(appts => {
+                this.setState({
+                    userAppts: appts
+                })
+            })
+    }
+
     //format time to be HH:MM AM/PM
     formatTime = (date) => {
         let hours = date.getHours();
@@ -65,10 +76,10 @@ class AppointmentPage extends React.Component {
                 <div className='allappts'> 
 
                     <div className='appt'>
-                        <p className='appt-text'>You have</p>
-                        <p className='appt-text'>no appointments.</p>
-                        <Link 
-                            to='/setappointment'>
+                        <p className='appt-text'>You have no appointments.</p>
+                        <Link
+                            to='/setappointment'
+                            className='linkToSetAppt'>
                             Set Appointment
                         </Link>
                     </div>
@@ -91,6 +102,13 @@ class AppointmentPage extends React.Component {
 
                                 <div className='appt' key={appt.id}>
                                     { this.formateAppt(appt)  }
+                                    <button
+                                        type='submit'
+                                        className='cancelAppt'
+                                        onClick = { this.handleCancelClicked }
+                                        value={ appt.id }>
+                                        Cancel Appointment
+                                    </button>
                                 </div>
                             )
                         }

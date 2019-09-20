@@ -12,8 +12,6 @@ class Times extends React.Component {
         selectedButton: this.context.selectedAppts[0].id
     }
 
-    setApptWithUser = () => {}
-
     handleSelect = e => {
         e.preventDefault();
         TimesService.updateAppt(e.target.value)
@@ -51,18 +49,23 @@ class Times extends React.Component {
 
                     <section className='allappts'>
 
-                        { this.context.selectedAppts.map(appt =>
+                        { this.context.selectedAppts
+
+                            .sort((a, b) => 
+                                new Date(a.appt_date) - new Date(b.appt_date)
+                            )
                         
-                            <div className='appt' key={ appt.id }>
-                                { this.formateAppt(appt)  }
-                                <button 
-                                    type='Submit'
-                                    className='setApptButton'
-                                    onClick={ this.handleSelect }
-                                    value={ appt.id }>
-                                    Create Appointment
-                                </button>
-                            </div>)
+                            .map(appt =>
+                                <div className='appt' key={ appt.id }>
+                                    { this.formateAppt(appt)  }
+                                    <button 
+                                        type='Submit'
+                                        className='setApptButton'
+                                        onClick={ this.handleSelect }
+                                        value={ appt.id }>
+                                        Create Appointment
+                                    </button>
+                                </div>)
                         }
                     </section>
 

@@ -33,6 +33,20 @@ const TimesApiService = {
             )
     },
 
+    cancelAppt(id) {
+        return fetch(`${config.API_BASE_URL}/times/cancelAppt/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            }
+        })
+            .then(res => 
+                (res.ok)
+                    ? res.json()
+                    : res.json().then(e => Promise.reject(e))
+            )
+    },
+
     getUserAppts() {
         return fetch(`${config.API_BASE_URL}/userappts`, {
             method: 'GET',

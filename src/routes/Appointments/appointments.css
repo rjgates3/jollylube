@@ -44,10 +44,10 @@
 
 .appt-text {
   font-size: 24px;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 30px 0;
   }
 
-.setApptButton {
+.setApptButton, .linkToSetAppt, .cancelAppt {
   border: none;
   /* color: #F21323; //header red */
   color: red;
@@ -55,6 +55,10 @@
   font-size: 1.2rem;
   background-color: rgba(1, 1, 1, 1);
   padding: 15px;
+}
+
+.linkToSetAppt {
+  margin-top: 15px;
 }
 
 @media (min-width: 450px) {

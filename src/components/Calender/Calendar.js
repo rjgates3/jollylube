@@ -22,7 +22,7 @@ class CalendarComponent extends React.Component {
     handleDateClicked = (date) => {
         this.context.setSelectedDay(date)
         //Appts are alreay filtered by year and month, so only need to filter by day and update context
-        let filterDay = new Date(date).getDay();
+        let filterDay = new Date(date).getDate();
         this.context.setSelectedAppts(this.filterApptsByDay(this.state.appts, filterDay))
     }
 
@@ -60,12 +60,13 @@ class CalendarComponent extends React.Component {
     }
 
     // filters appts array by a given day
-    filterApptsByDay = (appts, day) => {
+    filterApptsByDay = (appts, date) => {
         return appts
             //filter by day
             .filter(appt => {
-                let apptDay = new Date(appt.appt_date).getDay();
-                return apptDay === day;
+                let apptDay = new Date(appt.appt_date).getDate();
+                // console.log(`${day}, ${apptDay}`)
+                return apptDay === date;
             })
     }
 
