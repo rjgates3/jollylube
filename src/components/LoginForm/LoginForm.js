@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
                     </label>
                     <Input
                         name="password"
-                        type="text"
+                        type="password"
                         required 
                         id="LoginForm__password" 
                         placeholder="Password"
