@@ -10,14 +10,11 @@
       {
           "src": ".*",
           "dest": "./index.html"
-      }
-    ],
-    "builds":[
-        {
-            "src": "^/favicon.ico$",
-            "dest": "/favicon.ico",
-            "use": "@now/static"
-           }
+      },
+      {
+        "src": "^/favicon.ico$",
+        "dest": "/favicon.ico"
+       }
     ],
     "env": {
         "DB_URL": "https://cryptic-brook-57150.herokuapp.com/"
