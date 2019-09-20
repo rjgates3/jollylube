@@ -1,18 +1,25 @@
 {
     "version": 2,
-    "alias": "rjg-jollylube",
-    "name": "jollylube-rjg",
+    "alias": "jollylube",
+    "name": "jollylube",
     "routes": [
-        {
+      {
           "src": "^/static/(.*)",
           "dest": "/static/$1"
-        },
-        {
+      },
+      {
           "src": ".*",
           "dest": "./index.html"
-        }
+      }
+    ],
+    "builds":[
+        {
+            "src": "^/favicon.ico$",
+            "dest": "/favicon.ico",
+            "use": "@now/static"
+           }
     ],
     "env": {
-      "DB_URL": "https://cryptic-brook-57150.herokuapp.com/"
+        "DB_URL": "https://cryptic-brook-57150.herokuapp.com/"
     }
-  }
+}
