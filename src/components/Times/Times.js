@@ -45,7 +45,7 @@ class Times extends React.Component {
             return(
                 <div>
                     
-                    <h2 className='setApptH2'>Select an Avaliable Appointment Time. </h2>
+                    <h2 className='setApptH2'>Select an Available Appointment Time. </h2>
 
                     <section className='allappts'>
 

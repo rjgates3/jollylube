@@ -2,6 +2,7 @@ import React from 'react';
 import TokenService from '../../services/token-services';
 import { Link } from 'react-router-dom';
 import Context from '../../contexts/Context';
+import history from '../../history';
 
 import './sideDrawer.css'
 
@@ -9,9 +10,11 @@ class SideDrawer extends React.Component {
 
     static contextType = Context;
 
-    handleLogout = () => {
+    handleLogout = e => {
         TokenService.clearAuthToken();
         this.context.setLoggedIn();
+        history.push('/');
+        // this.context.handleDrawerToggleClick(e);
     };
 
     renderLogoutLink() {

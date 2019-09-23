@@ -111,7 +111,7 @@ class CalendarComponent extends React.Component {
                 )
     }
 
-    // updates the avaliable dates when user changes month on the calendar
+    // updates the available dates when user changes month on the calendar
     onChangeView = (value) => {
         
         this.switchLoading();
@@ -161,7 +161,7 @@ class CalendarComponent extends React.Component {
             return(
                 <div className='calendar-container'>
 
-                    <h2 className='setApptH2'>Select an Avaliable Day.</h2>
+                    <h2 className='setApptH2'>Select an Available Day.</h2>
 
                     <section className="calendar">
                         

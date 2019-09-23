@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Jolly Lube
 
-## Available Scripts
+https://www.https://jollylube.gatesjrichard.now.sh/
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+Jolly Lube is the first full-stack app that I coded 100% by myself. (I did have the amazing TA's and Mentor at Thinkful to help me work through issues) It is a booker app, where users can schedule appointments to bring their cars in for service. The pictures are a bit much for such a type of business, and the fact that you can schedule as many appointments as you like is a bit unrealistic but fun.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How to use the site
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Website
 
-### `npm test`
+Jolly Lube is deployed using Zeit, at https://www.https://jollylube.gatesjrichard.now.sh/
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Home/Landing Page
+<img src="./screenShots/landingPage.png" alt="Landing Page">
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Navigation
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+On wider screen devices, the navigation buttons are located in the upper right. For smaller screen devices, access them via the slide-out drawer, hamburger menu on the upper left corner.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Once logged in these buttons will change from "Login", and "Create Account" to "My Appointments", "Set Appointment" and "Logout"
 
-### `npm run eject`
+You can always get back to the home page by clicking the logo in the upper left.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Create Account
+You will find a "Create Account" link in the navbar. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Login
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Or you can use the test credentials (someone@example.com passw8rD#) to log in.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### My Appointments
 
-## Learn More
+Once logged in, you will be taken to the "/myappointments" page, and a list of any appointments will be displayed, or a link to schedule an appointment if you don't have any yet.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Set Appointment
+ 
+On this page, you will also be able to cancel any appointments using the cancel button on the individual appointment.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+That's It Now you are all set to have your car serviced at Jolly Lube! Home of the Jolly Fast Oil Change! or is that Jiffy Fast?
 
-### Code Splitting
+## Technology Used
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+FrontEnd client: React, deployed on Zeit
+Backend Server: Node, Express, deployed on Heroku
+Database: PostSQL, Heroku addon to Backend server
 
-### Analyzing the Bundle Size
+## What did I learn from this project
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+There is a giant leap from going through lessons or tutorials meant to teach you to create a specific site, to imagining and creating your project. A big challenge for me was the user authorization, having only learned about it the week before I started this project. Also, I had never styled a website this fully before, but I wanted to make it look as nice as possible. During the styling, I followed a couple of tutorials on youtube. First, for the hamburger, slide-out drawer (https://www.youtube.com/watch?v=l6nmysZKHFU). Second, parallax for the homepage images (https://www.youtube.com/watch?v=JttTcnidSdQ). Also, a bit of a struggle was dealing with times, and figuring out how to interact with npm-react-calendar. It was several hours of reading documentation and trial and error to figure out what I could and could not do. I wish I could have figured out how to style the calendar part of the app a little more, especially the backgrounds for active and inactive days.
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## What things would I add to make this site even better?
 
-### Advanced Configuration
+Right now the site is not yet fully functioning, there is no way for the shop owner to know what if any appointments or who set those appointments. Also, it would be nice if users could receive email or text message reminders for the appointments they have created.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1) Add more email support.
+    a) send an email to a user to confirm their account
+    b) send email reminders about appointments
+2) A way for the user to reset their password
+3) Admin account
+    a) admin can add and remove appointment times
+    b) admin can click on the calendar and see appointments that are set for that day

@@ -23,7 +23,6 @@ class App extends React.Component {
     static contextType = Context;
 
     state = {
-        loggedIn: false,
         hasError: false,
         loginError: null,
         sideDrawerOpen: false,
@@ -36,9 +35,7 @@ class App extends React.Component {
     }
 
     setLoggedIn = () => {
-        this.setState((prevState) => {
-            return {sideDrawerOpen: !prevState.sideDrawerOpen}
-        })
+        this.forceUpdate();
     }
 
     setLoginError = (error) => {
