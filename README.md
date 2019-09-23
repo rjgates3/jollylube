@@ -13,11 +13,11 @@ Jolly Lube is the first full-stack app that I coded 100% by myself. (I did have 
 Jolly Lube is deployed using Zeit, at https://www.https://jollylube.gatesjrichard.now.sh/
 
 ### Home/Landing Page
-<img src="./screenShots/landingPage.png" alt="Landing Page" height="200px">
+<img src="./screenShots/landingPage.png" alt="Landing Page" width="200px">
 
 
 ### Navigation
-<img src="./screenShots/nav.png" alt="Navigation" height="200px">
+<img src="./screenShots/nav.png" alt="Navigation" width="200px">
 
 
 On wider screen devices, the navigation buttons are located in the upper right. For smaller screen devices, access them via the slide-out drawer, hamburger menu on the upper left corner.
@@ -33,14 +33,14 @@ You will find a "Create Account" link in the navbar.
 Or you can use the test credentials (someone@example.com passw8rD#) to log in.
 
 ### My Appointments
-<img src="./screenShots/myAppointments.png" alt="My Appointments" height="200px">
+<img src="./screenShots/myAppointments.png" alt="My Appointments" width="200px">
 
 Once logged in, you will be taken to the "/myappointments" page, and a list of any appointments will be displayed, or a link to schedule an appointment if you don't have any yet.
 
 On this page, you will also be able to cancel any appointments using the cancel button on the individual appointment.
 
 ### Set Appointment
-<img src="./screenShots/createAppt1.png" alt="Calendar" height="200px">
+<img src="./screenShots/createAppt1.png" alt="Calendar" width="200px">
 
 When you navigate to set appointment (/setappointment), you will see a calendar with available days and days that are not available to select (gray background).
 
