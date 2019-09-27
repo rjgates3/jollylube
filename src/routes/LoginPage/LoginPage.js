@@ -11,7 +11,7 @@ class LoginPage extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="form">
                 <LoginForm />
             </div>
         )

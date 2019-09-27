@@ -10,12 +10,16 @@ class SideDrawer extends React.Component {
 
     static contextType = Context;
 
-    handleLogout = e => {
+    handleLogout = () => {
         TokenService.clearAuthToken();
         this.context.setLoggedIn();
+        this.context.handleBackDropClick();
         history.push('/');
-        // this.context.handleDrawerToggleClick(e);
     };
+
+    handleLinkClicked = () => {
+        this.context.handleBackDropClick();
+    }
 
     renderLogoutLink() {
         return(
@@ -23,7 +27,8 @@ class SideDrawer extends React.Component {
                 <li>
                     <Link 
                         to='/myappointments' 
-                        className='menu'>
+                        className='menu'
+                        onClick = { this.handleLinkClicked }>
                         My Appointments
                     </Link>
                 </li>
@@ -31,16 +36,17 @@ class SideDrawer extends React.Component {
                 <li>
                     <Link 
                         to='/setappointment' 
-                        className='menu'>
+                        className='menu'
+                        onClick = { this.handleLinkClicked }>
                         Set Appointment
                     </Link>
                 </li>
 
                 <li>
                     <Link 
-                        onClick={ this.handleLogout }
                         to='/'
-                        className='menu'>
+                        className='menu'
+                        onClick={ this.handleLogout }>
                         Logout
                     </Link>
                 </li>
@@ -54,7 +60,8 @@ class SideDrawer extends React.Component {
                 <li>
                     <Link
                         to='/login'
-                        className='menu'>
+                        className='menu'
+                        onClick = { this.handleLinkClicked }>
                         Login
                     </Link>
                 </li>
@@ -62,7 +69,8 @@ class SideDrawer extends React.Component {
                 <li>
                     <Link 
                         to='/createaccount'
-                        className='menu'>
+                        className='menu'
+                        onClick = { this.handleLinkClicked }>
                         Create Account
                     </Link>
                 </li>

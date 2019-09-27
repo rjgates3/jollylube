@@ -32,16 +32,16 @@ class LoginForm extends React.Component {
         const error = this.context.loginError
         return(
             <form 
-                className="LoginForm"
+                className="login"
                 onSubmit = { this.handleSubmit }>
                 <legend
                     id="sign-in">
-                    Sign In
+                    Login
                 </legend>
                 <div role='alert'>
                     { error && <p className='red'>{ error }</p> }
                 </div>
-                <div className='user_name'>
+                <div className='form-element'>
                     <label
                         htmlFor="LoginForm__user_name">
                         Email <Required />
@@ -54,7 +54,7 @@ class LoginForm extends React.Component {
                         placeholder="Enter your email:"
                     ></Input>
                 </div>
-                <div className='password'>
+                <div className='form-element'>
                     <label 
                         htmlFor="LoginForm__password">
                         Password <Required />
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
                         placeholder="Password"
                     ></Input>
                 </div>
-                <div>
+                <div className='form-element'>
                     <input 
                         type="submit"
                         name="submit"

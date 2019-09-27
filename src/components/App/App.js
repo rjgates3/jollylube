@@ -76,7 +76,8 @@ class App extends React.Component {
 
                         drawerClasses: this.state.drawerClasses,
                         handleDrawerToggleClick: this.handleDrawerToggleClick,
-                        click: this.handleDrawerToggleClick
+                        click: this.handleDrawerToggleClick,
+                        handleBackDropClick: this.handleBackDropClick
                 } } >
                 <Header />
                 <SideDrawer />

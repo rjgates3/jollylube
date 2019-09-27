@@ -40,16 +40,16 @@ class Registration extends React.Component {
         const error = this.context.loginError
         return(
             <form 
-                className='RegistrationForm' 
+                className='Registration' 
                 onSubmit={ this.handleSubmit }>
                 <legend 
                     className='create-account'>
-                    Create an Account
+                    Create Account
                 </legend>
                 <div role='alert'>
                     { error && <p className='red'>{ error }</p> }
                 </div>
-                <div className='full_name'>
+                <div className='form-element'>
                     <label
                         htmlFor='RegistrationForm__full_name'>
                         Full Name <Required />
@@ -62,7 +62,7 @@ class Registration extends React.Component {
                         placeholder='Enter your full name:'>
                     </Input>
                 </div>
-                <div className='user_name'>
+                <div className='form-element'>
                     <label
                         htmlFor='RegistrationForm__user_name'>
                         Email <Required />
@@ -75,7 +75,7 @@ class Registration extends React.Component {
                         placeholder='Enter your email:'>
                     </Input>
                 </div>
-                <div className='password'>
+                <div className='form-element'>
                     <label
                         htmlFor='RegistrationForm__password'>
                         Password <Required />
@@ -88,7 +88,7 @@ class Registration extends React.Component {
                         placeholder='Password'>
                     </Input>
                 </div>
-                <div>
+                <div className='form-element'>
                     <input 
                         type="submit"
                         name="submit"

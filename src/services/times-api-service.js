@@ -48,7 +48,7 @@ const TimesApiService = {
     },
 
     getUserAppts() {
-        return fetch(`${config.API_BASE_URL}/userappts`, {
+        return fetch(`${config.API_BASE_URL}/times/userappts`, {
             method: 'GET',
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
