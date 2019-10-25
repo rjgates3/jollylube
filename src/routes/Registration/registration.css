@@ -43,3 +43,9 @@ input[type="submit"] {
   margin-top: .7rem;
   font-size: 1rem;
 }
+
+.error {
+  text-align: center;
+  color: red;
+  font-weight: bolder;
+}

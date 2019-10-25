@@ -9,7 +9,7 @@ class DrawerToggleButton extends React.Component {
 
     render() {
         return (
-            <button className='toggle-button' onClick = { this.context.handleDrawerToggleClick }>
+            <button className="toggle-button" onClick = { this.context.handleDrawerToggleClick }>
                 <i className="fas fa-bars"></i>
             </button>
         )

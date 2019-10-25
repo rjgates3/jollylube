@@ -4,14 +4,15 @@ import TokenService from '../../services/token-services'
 import AuthApiService from '../../services/auth-api-service';
 import Context from '../../contexts/Context';
 
-
 class LoginForm extends React.Component {
 
     static contextType = Context;
 
+    state = { error: null }
+
     handleSubmit = event => {
         event.preventDefault();
-        this.context.setLoginError(null)
+        this.setState({ error: null })
         const { user_name, password } = event.target
         AuthApiService.postLogin({
             user_name: user_name.value,
@@ -24,12 +25,12 @@ class LoginForm extends React.Component {
                 this.props.history.push('/myappointments')
             })
             .catch(res => {
-                this.context.setLoginError(res.error)
+                this.setState({ error: res.error })
             })
     }
 
     render() {
-        const error = this.context.loginError
+        const error = this.state.error
         return(
             <form 
                 className="login"
@@ -38,8 +39,8 @@ class LoginForm extends React.Component {
                     id="sign-in">
                     Login
                 </legend>
-                <div role='alert'>
-                    { error && <p className='red'>{ error }</p> }
+                <div className = "error">
+                    { error }
                 </div>
                 <div className='form-element'>
                     <label

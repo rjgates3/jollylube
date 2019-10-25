@@ -10,7 +10,9 @@ const AuthApiService = {
             },
             body: JSON.stringify(credentials)
           })
-              .then(res => (!res.ok) ? res.json().then(e => Promise.reject(e)) : res.json())
+                .then(res => (!res.ok) 
+                    ? res.json().then(e => Promise.reject(e)) 
+                    : res.json())
       },
     postUser(user) {
         return fetch(`${config.API_BASE_URL}/users`, {
