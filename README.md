@@ -1,6 +1,8 @@
 # Jolly Lube
 
-https://www.https://jollylube.gatesjrichard.now.sh/
+Live: https://jollylube.gatesjrichard.now.sh/
+
+Server repo: https://github.com/rjgates3/jollylube-server
 
 ## About
 
