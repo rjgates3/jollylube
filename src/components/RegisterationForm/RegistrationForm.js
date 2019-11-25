@@ -27,10 +27,8 @@ class Registration extends React.Component {
                 password: password.value
             }))
                 .then(res => {
-                    user_name.value = '';
-                    full_name.value = '';
-                    password.value = '';
                     TokenService.saveAuthToken(res.authToken);
+                    this.context.setLoggedIn();
                     this.props.history.push('/myappointments');
                 })
                 .catch(res => {
